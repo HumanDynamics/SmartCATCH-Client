@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">SmartCATCH</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="loading">Loading&#8230;</string>
+    <string name="problem_contacting_server">There was a problem contacting the server. Please try again later.</string>
+    
+    <string name="main_pipeline_config">
+        {
+        	"@type": "edu.mit.media.openpds.client.funf.OpenPDSPipeline",
+        	"schedules": {
+	         		"archive": {
+        			"strict": false,
+        			"interval": 86000
+        		},
+        		"upload": {
+        			"strict": false,
+        			"interval": 120
+        		}
+        	},
+			"data": [
+				{
+					"@type": "edu.mit.media.funf.probe.builtin.ActivityProbe",
+				    "@schedule": {
+					    "strict": true,
+					    "interval": 60,
+					    "duration": 5,
+					    "opportunistic": true
+					}
+				},
+				{
+					"@type": "edu.mit.media.funf.probe.builtin.WifiProbe",
+					"@schedule": {
+						"strict": false,
+						"interval": 300, 
+						"opportunistic": true
+					}
+				}
+			]
+        }
+	</string>
+        
+</resources>
