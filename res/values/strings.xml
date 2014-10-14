@@ -1,11 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+	<color name="white">#FFFFFF</color>
     <string name="app_name">SmartCATCH</string>
     <string name="hello_world">Hello world!</string>
+    <string name="empty_string"></string>
     <string name="action_settings">Settings</string>
     <string name="loading">Loading&#8230;</string>
     <string name="problem_contacting_server">There was a problem contacting the server. Please try again later.</string>
+    <string name="title_activity_splash">SmartCATCH</string>
+    <string name="prefs">edu.mit.media.hellopds.SHAREDPREF</string>
+    <string name="pref_local_key">localisation</string>
+    <string name="pref_local_title">Localisation</string>
+    <string name="pref_local_sum">Explanation</string>
+    <string name="pref_screen_key">screenon</string>
+    <string name="pref_screen_title">On/off screen</string>
+    <string name="pref_screen_sum">Explanation</string>
+    <string name="pref_move_key">movement</string>
+    <string name="pref_move_title">Movement sensors</string>
+    <string name="pref_move_sum">Explanation</string>
+
+    <string name="pref_contact_key">contact</string>
+    <string name="pref_contact_title">Contact us</string>
+    <string name="pref_questions_key">questions</string>
+    <string name="pref_questions_title">Questions</string>
+    <string name="pref_results_key">results</string>
+    <string name="pref_results_title">See your results</string>
     
     <string name="main_pipeline_config">
         {
@@ -42,5 +61,5 @@
 			"GCMSenderId": "724884266172"
         }
 	</string>
-        
+	
 </resources>

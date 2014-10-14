@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+  <EditTextPreference android:title="Your Name"
+                      android:key="username"
+                      android:summary="Please provide your username"></EditTextPreference>
+  
+  <SwitchPreference
+    android:key="@string/pref_local_key"
+    android:defaultValue="true"
+    android:title="@string/pref_local_title"
+    android:summary="@string/pref_local_sum" />
+
+  <SwitchPreference
+    android:key="@string/pref_screen_key"
+    android:defaultValue="true"
+    android:title="@string/pref_screen_title"
+    android:summary="@string/pref_screen_sum" />
+  
+  <SwitchPreference
+    android:key="@string/pref_move_key"
+    android:defaultValue="true"
+    android:title="@string/pref_move_title"
+    android:summary="@string/pref_move_sum" />
+  
+  <CheckBoxPreference android:title="Application Updates"
+                      android:defaultValue="false"
+                      android:summary="This option if selected will allow the application to check for latest versions."
+                      android:key="applicationUpdates" />
+  
+  <edu.mit.media.hellopds.ButtonPreference
+        android:key="@string/pref_contact_key"
+        android:title="@string/pref_contact_title"
+        android:widgetLayout="@layout/pref_button" />
+
+  <edu.mit.media.hellopds.ButtonPreference
+        android:key="@string/pref_questions_key"
+        android:title="@string/pref_questions_title"
+        android:widgetLayout="@layout/pref_button" />
+  
+  <edu.mit.media.hellopds.ButtonPreference
+        android:key="@string/pref_results_key"
+        android:title="@string/pref_results_title"
+        android:widgetLayout="@layout/pref_button" />
+
+</PreferenceScreen>

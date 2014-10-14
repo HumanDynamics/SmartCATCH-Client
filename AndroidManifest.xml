@@ -1,29 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="edu.mit.media.smartcatch"
+    package="edu.mit.media.hellopds"
     android:versionCode="1"
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="8"
+        android:minSdkVersion="17"
         android:targetSdkVersion="19" />
-    
-    <!-- General permissions  -->
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.BATTERY_STATS" />
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    
-    <!-- Notifications permissions -->
-    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-    <permission android:name="edu.mit.media.smartcatch.permission.C2D_MESSAGE"
+	<uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+	<uses-permission android:name="android.permission.GET_ACCOUNTS" />
+	<uses-permission android:name="android.permission.WAKE_LOCK" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+	<permission android:name="edu.mit.media.hellopds.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
-    <uses-permission android:name="edu.mit.media.smartcatch.permission.C2D_MESSAGE" />
-    
-    <!-- Probe permissions -->
-    
-    <!-- Wifi Probe -->
+    <uses-permission android:name="edu.mit.media.hellopds.permission.C2D_MESSAGE" />
+
+   <!-- Wifi Probe -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
@@ -35,20 +32,49 @@
     <!-- Bluetooth Probe -->
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/CustomActionBarTheme" android:logo="@drawable/logo_blue">
         <activity
-            android:name="edu.mit.media.smartcatch.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".RegistrationActivity"
+            android:label="@string/title_activity_registration"
+            android:windowSoftInputMode="adjustResize|stateHidden" >
+        </activity>
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity
+            android:name=".SplashActivity"
+            android:label="@string/title_activity_splash" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <receiver 
+            android:name=".MessageReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <category android:name="edu.mit.media.hellopds" />
+            </intent-filter>
+        </receiver>
+        <service android:name=".MessageIntentService" />
+
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings" >
         </activity>
         
         <!-- Funf / openPDS services -->
@@ -67,7 +93,7 @@
                 android:name="MainPipeline"
                 android:resource="@string/main_pipeline_config" />
         </service>
-        <service android:name="edu.mit.media.openpds.client.NotificationService" />
+        <service android:name="edu.mit.media.hellopds.NotificationService" />
         <receiver
             android:name="edu.mit.media.openpds.client.funf.LauncherReceiver"
             android:enabled="true" >
@@ -80,20 +106,26 @@
             </intent-filter>
         </receiver>
         
-        <!-- Only C2DM servers can send messages for the app. If permission is not set - any other app can generate it -->
-        <receiver
-            android:name="edu.mit.media.openpds.client.GcmBroadcastReceiver"            
-            android:permission="com.google.android.c2dm.permission.SEND" >
-            <intent-filter>
-                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
-
-                <category android:name="edu.mit.media.smartcatch" />
-            </intent-filter>
-        </receiver>
-        
-        <service android:name="edu.mit.media.openpds.client.GcmIntentService" />
-	     
+		<!-- Only C2DM servers can send messages for the app. If permission is not set - any other app can generate it -->
+		<receiver
+		    android:name="edu.mit.media.hellopds.GcmBroadcastReceiver"            
+		    android:permission="com.google.android.c2dm.permission.SEND" >
+		    <intent-filter>
+		        <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+		        <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+		
+		        <category android:name="edu.mit.media.hellopds" />
+		    </intent-filter>
+		</receiver>
+		
+		<service android:name="edu.mit.media.hellopds.GcmIntentService" /> 
+		
+		<service android:name="edu.mit.media.hellopds.DialogHelper" />
     </application>
+
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
 </manifest>
