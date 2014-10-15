@@ -47,6 +47,10 @@ public class SplashActivity extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_splash);
 		
+		// Get the action
+		Intent intent = getIntent();
+		String action = intent.getStringExtra("action");
+		
 		getActionBar().setTitle("");
 		mDrawerList = (ListView) findViewById(R.id.left_drawer);
 		mDrawerList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, mNavList));
@@ -119,7 +123,11 @@ public class SplashActivity extends FragmentActivity {
 //			addStatsFragment();
 //			textView.setText("User was previously authenticated"); // TODO: use toast here.
 			Log.d("HelloPDS", "User was previously authenticated");
-			String url = mPds.buildAbsoluteUrl("/visualization/smartcatch/splash");
+			String actionUrl = "/visualization/smartcatch/splash"; 
+			if (action != null) {
+				actionUrl = "/visualization/smartcatch/questions?instance=" + action;
+			}
+			String url = mPds.buildAbsoluteUrl(actionUrl);
 			addWebViewFragment(url);
 		} catch (Exception ex) {
 			regServerLoginRegister();

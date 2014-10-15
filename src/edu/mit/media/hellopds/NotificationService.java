@@ -69,14 +69,15 @@ public class NotificationService extends IntentService {
 		
 		nDecoder.decode(notification);
 		
-		Intent newIntent = new Intent(this, DialogActivity.class);
-		newIntent.putExtra("title", nDecoder.title);
-		newIntent.putExtra("description", nDecoder.description);
-		newIntent.putExtra("posButton", nDecoder.posButton);
-		newIntent.putExtra("negButton", nDecoder.negButton);
-		newIntent.putExtra("numRepeats", nDecoder.numRepeats);
-		newIntent.putExtra("repeatTime", nDecoder.repeatTime);
-		newIntent.putExtra("items", nDecoder.items);
+		Intent newIntent = new Intent(this, SplashActivity.class);
+//		newIntent.putExtra("title", nDecoder.title);
+//		newIntent.putExtra("description", nDecoder.description);
+//		newIntent.putExtra("posButton", nDecoder.posButton);
+//		newIntent.putExtra("negButton", nDecoder.negButton);
+//		newIntent.putExtra("numRepeats", nDecoder.numRepeats);
+//		newIntent.putExtra("repeatTime", nDecoder.repeatTime);
+//		newIntent.putExtra("items", nDecoder.items);
+		newIntent.putExtra("action", nDecoder.nAction);
 		PendingIntent pIntent = PendingIntent.getActivity(this, 0, newIntent, 0);
 		
 		Notification n  = new Notification.Builder(this)
@@ -85,12 +86,6 @@ public class NotificationService extends IntentService {
         .setSmallIcon(R.drawable.ic_launcher).setVibrate(new long[] { 0, 100, 50, 100, 50, 100 })
 //        .setSmallIcon(R.drawable.icon)
         .setContentIntent(pIntent).build();
-        
-//        .setExtras(newIntent.getExtras())
-//        .setAutoCancel(true)
-//        .addAction(R.drawable.ic_launcher, "Call", pIntent)
-//        .addAction(R.drawable.ic_launcher, "More", pIntent)
-//        .addAction(R.drawable.ic_launcher, "And more", pIntent).build();
 
 		return n;
 	}

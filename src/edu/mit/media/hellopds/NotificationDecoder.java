@@ -8,7 +8,7 @@ import android.os.Build;
 
 public class NotificationDecoder {
 
-	String nTitle, nContent, title, questionType, description, posButton, negButton, s1, s2, s3;
+	String nTitle, nContent, nAction, title, questionType, description, posButton, negButton, s1, s2, s3;
 	int numItems, numRepeats, repeatTime;
 	String[] items;
 	
@@ -43,6 +43,7 @@ public class NotificationDecoder {
 //		nContent = notification.extras.getString("android.text");
 		
 		nTitle = notification.extras.getString("android.text");
+		nAction = notification.extras.getString("android.title");
 		// TODO: nAction ...
 	}
 	
