@@ -34,7 +34,7 @@ import android.support.v4.app.FragmentActivity;
 public class SplashActivity extends FragmentActivity {
 
 	private ListView mDrawerList;
-	private String[] mNavList = {"Quick Look", "My Results", "History", "Questions", "Settings"};
+	private String[] mNavList = {"Quick Look", "My Results", "History", "Questions", "Help"};
 	private ActionBarDrawerToggle mDrawerToggle;
 	private DrawerLayout mDrawerLayout;
 	PersonalDataStore mPds;
@@ -61,7 +61,7 @@ public class SplashActivity extends FragmentActivity {
         
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
 //                R.drawable.ic_launcher, R.string.app_name, R.string.app_name) {
-        		R.drawable.menu, R.string.empty_string, R.string.empty_string) {
+        		R.drawable.menu, R.string.app_name, R.string.app_name) {
 
             /** Called when a drawer has settled in a completely closed state. */
             public void onDrawerClosed(View view) {
@@ -286,8 +286,11 @@ public class SplashActivity extends FragmentActivity {
 				mDrawerLayout.closeDrawers();
         	break;
 	        case 4: 
-	        	i = new Intent(context, SettingsActivity.class); //TODO: Implement
-	        	startActivity(i);
+//	        	i = new Intent(context, SettingsActivity.class); //TODO: Implement
+//	        	startActivity(i);
+	        	url = mPds.buildAbsoluteUrl("/visualization/smartcatch/help");
+	        	addWebViewFragment(url);
+	        	mDrawerLayout.closeDrawers();
         	break;
         	default: break; //does nothing
 	        }

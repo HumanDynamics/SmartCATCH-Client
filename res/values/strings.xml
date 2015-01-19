@@ -44,8 +44,8 @@
 					"@type": "edu.mit.media.funf.probe.builtin.ActivityProbe",
 				    "@schedule": {
 					    "strict": true,
-					    "interval": 60,
-					    "duration": 5,
+					    "interval": 300,
+					    "duration": 15,
 					    "opportunistic": true
 					}
 				},
@@ -56,7 +56,47 @@
 						"interval": 300, 
 						"opportunistic": true
 					}
-				}
+				},
+				{
+					"@type": "edu.mit.media.funf.probe.builtin.BluetoothProbe",
+					"@schedule": {
+						"strict": false,
+						"interval": 300, 
+						"opportunistic": true
+					}
+				},
+				{
+					"@type": "edu.mit.media.funf.probe.builtin.SmsProbe",
+					"@schedule": {
+						"strict": true,
+						"interval": 3600, 
+						"opportunistic": true
+					}
+				},				
+				{
+					"@type": "edu.mit.media.funf.probe.builtin.CallLogProbe",
+				    "@schedule": {
+					    "strict": true,
+					    "interval": 3600,
+					    "opportunistic": true
+					}
+				},
+				{
+					"@type": "edu.mit.media.funf.probe.builtin.ScreenProbe",
+					"maxScanTime": 40,
+					"@schedule": {
+						"strict": true,
+						"opportunistic": true
+					}
+				},
+				{
+					"@type": "edu.mit.media.funf.probe.builtin.LocationProbe",
+				    "@schedule": {
+					    "strict": false,
+					    "interval": 900,
+					    "opportunistic": true
+					}
+				},
 			],
 			"GCMSenderId": "724884266172"
         }
